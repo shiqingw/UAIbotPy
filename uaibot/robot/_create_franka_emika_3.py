@@ -63,12 +63,11 @@ def _create_franka_emika_3(htm, name, color, opacity):
     col_model[5].append(Cylinder(htm= Utils.trn([0,0,0.02]),
                                  name=name + "_C5_0", radius=0.06, height=0.21, color="cyan", opacity=0.3))
 
-    col_model[6].append(Box(htm= Utils.trn([0,0,0.04-0.09]), 
+    col_model[6].append(Box(htm= Utils.trn([0,0,0.04-0.09])*Utils.rotz(-np.pi/4), 
                             name=name + "_C6_0", width=0.05 , depth=0.21, height=0.10, color="red", opacity=0.3))
 
-    col_model[6].append(Box(htm= Utils.trn([0.03, 0.03, -0.025-0.07]) * Utils.rotz(np.pi / 4), 
+    col_model[6].append(Box(htm= Utils.trn([0.03, 0.03, -0.025-0.07]) , 
                             name=name + "_C6_1", width=0.1000 , depth=0.09, height=0.0340, color="red", opacity=0.3))
-
 
     # Create 3d objects
     htm1 = np.matrix([[1., 0., 0., 0.], [0., 0.0008, -1., 0.], [0., 1., 0.0008, 0.], [0., 0., 0., 1.]])
@@ -160,7 +159,7 @@ def _create_franka_emika_3(htm, name, color, opacity):
             Model3D(
                 'https://raw.githubusercontent.com/viniciusmgn/uaibot_content/master/contents/FrankaErmika/hand.obj',
                 scale,
-                Utils.trn([0, 0, -0.107+0.05-0.01]) * Utils.rotx(0),  # 0.333+0.295
+                Utils.trn([0, 0, -0.107+0.05-0.01]) * Utils.rotx(0)* Utils.rotz(-np.pi/4),  # 0.333+0.295
                 MeshMaterial(metalness=0.3, clearcoat=1, roughness=0.5, normal_scale=[0.5, 0.5], color=color,
                              opacity=opacity))
         ]
@@ -183,4 +182,4 @@ def _create_franka_emika_3(htm, name, color, opacity):
     #Create joint limits
     joint_limits = (np.pi/180)*np.matrix([[-166,166],[-101,101],[-166,166],[-176,-4],[-166,166],[-1,215],[-166,166]])
     
-    return base_3d_obj, links, np.identity(4), np.identity(4), q0, joint_limits
+    return base_3d_obj, links, np.identity(4), Utils.rotz(-np.pi/4), q0, joint_limits
