@@ -49,6 +49,7 @@ from ._create_davinci import _create_davinci
 from ._create_magician_e6 import _create_magician_e6
 from ._create_kinova_gen3 import _create_kinova_gen3
 from ._create_jaco import _create_jaco
+from ._create_ur_ur3e import _create_ur_ur3e
 
 from .links import *
 
@@ -1275,6 +1276,21 @@ class Robot:
         """
 
         return _create_jaco(htm, name, color, opacity, eef_frame_visible)
+    
+    @staticmethod
+    def create_ur_ur3e(
+        htm: HTMatrix = np.eye(4),
+        name: str = "",
+        color: str | list | None = 'white',
+        opacity: float = 1.0,
+        eef_frame_visible: bool = True
+        ) -> "Robot":
+
+        base_3d_obj, links, htm_base_0, htm_n_eef, q0, joint_limits = _create_ur_ur3e(htm, name, color, opacity)
+        return Robot(name, links, base_3d_obj, htm, htm_base_0, htm_n_eef, q0, eef_frame_visible, joint_limits)
+
+    
+    
     
     #######################################
     # Distance computation and collision
