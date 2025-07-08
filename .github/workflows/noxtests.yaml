@@ -6,6 +6,10 @@ on:
     # branches:
     #   - main
     #   - 'feature/*'
+    # This will trigger on pushes to any branch,
+    # but only if files inside the uaibot/ folder are modified.
+    paths:
+      - 'uaibot/**'
   pull_request:
 
 jobs:
