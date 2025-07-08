@@ -1,4 +1,9 @@
-__version__ = '0.0.21'
+from importlib.metadata import version, PackageNotFoundError
+
+try:
+    __version__ = version("uaibot")
+except PackageNotFoundError:
+    __version__ = "unknown"
 
 import os
 import sys
