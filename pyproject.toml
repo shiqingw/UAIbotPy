@@ -100,13 +100,13 @@ test-command = "python -c 'import uaibot; print(uaibot.__version__); import uaib
 archs = "AMD64"
 test-command = "python -c \"import uaibot; print(uaibot.__version__); import uaibot_cpp_bind\""
 
-[tool.coverage.run]
-branch = true
-source = ["uaibot"]
-
-[tool.coverage.report]
-# include_namespace_packages = true
-show_missing = true
-
-[tool.pytest.ini_options]
-pythonpath = ["."]
+# [tool.coverage.run]
+# branch = true
+# source = ["uaibot"]
+#
+# [tool.coverage.report]
+# # include_namespace_packages = true
+# show_missing = true
+#
+# [tool.pytest.ini_options]
+# pythonpath = ["."]
